@@ -22,7 +22,6 @@ class Artist
     SqlRunner.run("DELETE FROM artists;")
   end
 
-  #edit
   def edit()
     sql = "UPDATE artists SET name = $1 WHERE id $2;"
     values = [@name]
@@ -30,14 +29,13 @@ class Artist
     return result
   end
 
-  #delete
   def delete()
     sql = "DELETE FROM artists WHERE id = $1;"
     values = [@id]
     result = SqlRunner.run(sql, values)
     return result
   end
-  #find
+
   def find_albums()
     sql = "SELECT * FROM albums WHERE artist_id = $1;"
     values = [@id]
