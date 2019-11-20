@@ -26,8 +26,8 @@ class Album
   end
 
   def edit()
-    sql = "UPDATE abums SET (title, genre, artist_id) = ($1, $2, $3) WHERE id = $4;"
-    values = [@title, @genre, @artist_id]
+    sql = "UPDATE albums SET (title, genre, artist_id) = ($1, $2, $3) WHERE id = $4;"
+    values = [@title, @genre, @artist_id, @id]
     result = SqlRunner.run(sql, values)
     return result
   end
@@ -37,9 +37,10 @@ class Album
     values = [@id]
     result = SqlRunner.run(sql, values)
     return result
+  end
 
   def find_artist()
-    sql = "SELCT * FROM artists WHERE id = $1"
+    sql = "SELECT * FROM artists WHERE id = $1"
     values = [@artist_id]
     result = SqlRunner.run(sql, values)[0]
     return Artist.new(result)
