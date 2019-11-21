@@ -22,7 +22,7 @@ class Artist
     SqlRunner.run("DELETE FROM artists;")
   end
 
-  def edit()
+  def update()
     sql = "UPDATE artists SET name = $1 WHERE id = $2;"
     values = [@name, @id]
     result = SqlRunner.run(sql, values)
@@ -36,12 +36,22 @@ class Artist
     return result
   end
 
+
+#Forgot to write this!!!
+  def self.all()
+    sql = "SELECT * FROM artists"
+    results = SqlRunner.run(sql)
+    return results.map{|artist_hash|Artist.new(artist_hash)}
+  end
+
   def find_albums()
     sql = "SELECT * FROM albums WHERE artist_id = $1;"
     values = [@id]
     albums = SqlRunner.run(sql, values)
     return albums.map{|album| Album.new(album)}
   end
+
+
 
   def self.find_by_id(id)
     sql = "SELECT * FROM artists WHERE id = $1;"
