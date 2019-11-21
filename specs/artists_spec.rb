@@ -11,8 +11,8 @@ class ArtistTest < MiniTest::Test
       'name' => 'Johnny Cash'
     }
 
-    artist_info = Artist.new(artist_info)
-    assert_equal('Johnny Cash', artist_info.name)
+    new_artist = Artist.new(artist_info)
+    assert_equal('Johnny Cash', new_artist.name)
   end
 
 end
