@@ -55,6 +55,4 @@ class Album
     return Album.new(album_hash)
   end
 
-
-
 end
